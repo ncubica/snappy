@@ -1,0 +1,10 @@
+.dropdown-menu{
+    padding: 25px;
+    width: 300px;
+    left: 50%;
+    margin-left: -150px!important;
+}
+
+fieldset[disabled] .form-control:not(textarea), .form-control-wrapper .form-control:not(textarea), .form-control:not(textarea), fieldset[disabled] .form-control:focus:not(textarea), .form-control-wrapper .form-control:focus:not(textarea), .form-control:focus:not(textarea), fieldset[disabled] .form-control.focus:not(textarea), .form-control-wrapper .form-control.focus:not(textarea), .form-control.focus:not(textarea) {
+    height: 50px!important;
+}

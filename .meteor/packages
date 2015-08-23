@@ -1,0 +1,26 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+insecure
+mrt:moment
+accounts-password
+email
+mdg:camera
+jquery
+accounts-base
+iron:router
+less
+meteorhacks:npm
+
+
+npm-container
+fezvrasta:bootstrap-material-design
+ian:accounts-ui-bootstrap-3
+natestrauser:animate-css
+cfs:standard-packages
+cfs:gridfs
+cfs:filesystem
