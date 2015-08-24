@@ -4,22 +4,20 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
+autopublish
 insecure
-mrt:moment
-accounts-password
-email
-mdg:camera
-jquery
-accounts-base
-iron:router
-less
+meteor-platform
+react
+
+cosmos:browserify
 meteorhacks:npm
 
 
 npm-container
-natestrauser:animate-css
 cfs:standard-packages
 cfs:gridfs
 cfs:filesystem
-react
+mdg:camera
+mrt:moment
+accounts-base
+accounts-password
