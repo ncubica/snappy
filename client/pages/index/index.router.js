@@ -5,7 +5,7 @@ Meteor.startup(function(){
         name : "index",
 
         waitOn : function(){
-            if(!_u_.user.islogged())
+            if(!___.user.islogged())
                 this.redirect("login");
 
             return  [
@@ -16,7 +16,7 @@ Meteor.startup(function(){
         },
 
         onBeforeAction : function(){
-            if(!_u_.user.islogged())
+            if(!___.user.islogged())
                 this.redirect("login");
 
             this.next();

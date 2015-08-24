@@ -7,10 +7,9 @@ home = (function(){
 
     h.observer = function(){
         $(document).on("click",".js-home-openCamara",openCamara);
-        foodLog.subscribe("onFoodLogAdded", home.onFoodLogAdded);
     };
 
-    h.onFoodLogAdded = function(response){
+    h.onBehaviorLogAdded = function(response){
 
     };
 

@@ -18,9 +18,8 @@ meteorhacks:npm
 
 
 npm-container
-fezvrasta:bootstrap-material-design
-ian:accounts-ui-bootstrap-3
 natestrauser:animate-css
 cfs:standard-packages
 cfs:gridfs
 cfs:filesystem
+react

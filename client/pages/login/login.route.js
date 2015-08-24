@@ -2,7 +2,7 @@ Meteor.startup(function(){
 
     Router.route('/login', function(){
 
-        if(_u_.user.islogged()){
+        if(___.user.islogged()){
             this.render("index");
             return;
         }

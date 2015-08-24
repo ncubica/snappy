@@ -12,7 +12,7 @@ Meteor.startup(function(){
 
         c.snap = function(error, data){
           if(!error){
-              var blob = _u_.generate.dataURLToBlob(data);
+              var blob = ___.generate.dataURLToBlob(data);
               camera.onCameraSnap(data, blob);
           }
         };

@@ -1,13 +1,28 @@
 Meteor.startup(function(){
 
-    upload = (function(){
+    upload = (function(name){
+        var name = name;
         var u = {};
+
+
+        var states = {
+            onStart     : "onStart",
+            onProgress  : "onProgres",
+            onProcess   : "onProcess",
+            onFinish    : "onFinish"
+        };
 
         var watchers = {};
         var eventCallback;
         u.init = function(){
             u.observe();
+            channel();
         };
+
+        function channel(){
+            //set the channels for this class that will emit the follow events
+            broadcast.channel(name,[states.onStart, states.onProgress, states.onProcess, states.onFinish]);
+        }
 
         u.observe = function(){
             $(document).on("change","input[type=file]", uploading);
@@ -24,16 +39,15 @@ Meteor.startup(function(){
             });
         };
 
-        function uploading(event){
+        function uploading(eventDom){
 
-            eventCallback = $(event.target).attr("data-upload-onFinish");
-
+            var eventDom = eventDom;
             FS.Utility.eachFile(event, function(file) {
 
                 UploadFsCollection.insert(file, function (err, fileObj) {
                     if (!err) {
 
-                        uploading.watch(fileObj._id);
+                        uploading.watch(fileObj._id, eventDom);
 
                     }else{
                         //error
@@ -43,33 +57,36 @@ Meteor.startup(function(){
             });
         }
 
-        uploading.watch = function(_id){
-            var uuid = _u_.generate.uuid();
+        uploading.watch = function(_id, eventDom){
+            var uuid  = ___.generate.uuid();
+            var eventDom = eventDom;
+
             watchers[uuid] = UploadFsCollection.find({_id : _id}).observe({
                 changed : function(file, oldFile){
                     console.log(file.uploadProgress());
                     if(file.url() !== null){
-                        uploading.onFinish(file._id, uuid);
+                        uploading.onFinish(file._id, uuid, file.url(), eventDom);
                     }
                 }
             });
         };
 
-        uploading.onFinish = function(_id, uuid){
+        uploading.onFinish = function(_id, uuid, url, eventDom){
 
             //THIS SHOULD BE REDO SINCE IS NOT RIGHT THAT THE WATCHER
-            if(!_u_.val.isUndefined(watchers[uuid])){
+            if(!___.val.isUndefined(watchers[uuid])){
                 watchers[uuid].stop();
                 delete watchers[uuid];
             }
 
-            ////run the string callback
-            //_u_.exe(eventCallback, window, _id);
+            //broadcast event on Finish
+            var args = { _id : _id, url : url, event : eventDom };
+            broadcast.transmit(name,states.onFinish, args);
+
         };
 
         return u;
-    })();
+    })("upload");
 
     upload.init();
 });
-

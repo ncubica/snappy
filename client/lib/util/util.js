@@ -1,5 +1,5 @@
 
-_u_ = {
+___ = {
 
     user: {
         islogged: function () {
@@ -10,6 +10,14 @@ _u_ = {
     val : {
         isUndefined: function (val) {
             return (typeof val === "undefined");
+        },
+
+        isFunction: function(val) {
+            return (typeof val === "function");
+        },
+
+        isArray: function(val){
+            return val.constructor === Array;
         }
     },
 
@@ -47,6 +55,17 @@ _u_ = {
         }
     },
 
+    get : {
+        //http://stackoverflow.com/questions/2648293/javascript-get-function-name
+        functionName : function(fun) {
+            var ret = fun.toString();
+            ret = ret.substr('function '.length);
+            ret = ret.substr(0, ret.indexOf('('));
+            return ret;
+        }
+
+    },
+
     /**
      * Execute a string function in their context as example 'myfunction.dosomething.awesome'
      * This normally is use to receive paramater as string in dom attributes as data-some-callback='myfunction.dosomething.awesome'
@@ -63,5 +82,9 @@ _u_ = {
             context = context[namespaces[i]];
         }
         return context[func].apply(context, args);
+    },
+
+    notImplemented : function(msg){
+        console.log("FUNCTION NOT IMPLEMENTED - " + msg);
     }
 };

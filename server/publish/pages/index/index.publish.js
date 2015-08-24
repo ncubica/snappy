@@ -2,7 +2,7 @@ Meteor.startup(function () {
 
     Meteor.publish('foodLog',function(){
         if (this.userId) {
-            return FoodLogCollection.find({ userId : this.userId });
+            return BehaviorLogCollection.find({ userId : this.userId });
         }else{
             return [];
         }
